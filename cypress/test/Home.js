@@ -1,33 +1,31 @@
-import HomePage from '../pageObjects/HomePage'
-import Header from '../pageObjects/Header'
-import SearchPage from '../pageObjects/SearchPage'
+import HomePage from '../support/pageObjects/HomePage'
+import SearchPage from '../support/pageObjects/SearchPage'
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // prevent Cypress from failing the test
-    return false
-  })
+describe('Meo search', function() {
+    const homePage = new HomePage()
+    const searchPage = new SearchPage()
+    
+    before(function() {
+        cy.fixture('example.json').then(data => {
+            this.searchKeyword = data.searchKeyword
+            this.maxPrice = data.maxPrice
+        }) 
+    })
 
-describe('', function() {
-    it('', function() {
-        const homePage = new HomePage()
-        const header = new Header()
-        const searchPage = new SearchPage()
-        
+    it('Get all devices with price lower than specified', function() {
         homePage.visit()
         
-        header.getSearch().type('iPhone')
-        header.getSearchButton().click()
-        
-        searchPage.getTab(searchPage.TAB_LOJA).click() 
+        homePage.header.searchInput().type(this.searchKeyword)
+        homePage.header.searchButton().click()
 
-        const maxPrice = 949.99
-        searchPage.getDevicesUnderPrice(maxPrice).then(deviceList => {
+        searchPage.tab(searchPage.TAB_LOJA).click() 
+
+        searchPage.getDevicesUnderPrice(this.maxPrice).then(deviceList => {
             expect(deviceList.length).to.be.at.least(1)
             
             deviceList.forEach(device => {
                 const price = device.price
-
-                expect(price).to.be.at.most(maxPrice)
+                expect(price).to.be.at.most(this.maxPrice)
             })
         })
         
