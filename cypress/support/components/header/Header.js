@@ -1,9 +1,9 @@
 class Header {
-    getSearch() {
+    searchInput() {
         return cy.get('.menu-new-search > input')
     }
 
-    getSearchButton() {
+    searchButton() {
         return cy.get('.icon-search')
     }
 }

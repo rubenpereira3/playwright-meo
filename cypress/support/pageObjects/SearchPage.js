@@ -5,7 +5,7 @@ class SearchPage {
         this.TAB_AJUDA = 'Ajuda'
     }
 
-    getTab(tabName) {
+    tab(tabName) {
         return cy.get(`.tabs > * button[title=${tabName}]`)
     }
 
