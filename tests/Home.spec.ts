@@ -6,7 +6,7 @@ test.describe('Meo search', () => {
 
     const testData = {
         "searchKeyword": "iphone",
-        "maxPrice": 555.99
+        "maxPrice": 1499.99
       }
       
     test('Get all devices with price lower than specified', async ({ page }) => {
