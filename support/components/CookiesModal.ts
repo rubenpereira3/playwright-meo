@@ -7,6 +7,6 @@ export class CookiesModal {
     
     constructor(page: Page) {
         this.page = page;
-        this.acceptButton = page.locator('button').filter({ hasText: 'CONCORDO'});
+        this.acceptButton = page.getByRole('button', { name: 'Concordo' });
     }
 }

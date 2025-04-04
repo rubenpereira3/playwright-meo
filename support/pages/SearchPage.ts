@@ -13,7 +13,7 @@ export class SearchPage {
 
     constructor(page: Page)  {
         this.page = page;
-        this.tabs = page.locator('.tabs > * button');
+        this.tabs = page.locator('.tabs').getByRole('button');
     }
 
     async getDevicesUnderPrice(maxPrice: number) {

@@ -8,7 +8,7 @@ export class Header {
     
     constructor(page: Page) {
         this.page = page;
-        this.searchInput = page.locator('.menu-new-search > input');
-        this.searchButton = page.locator('.icon-search');
+        this.searchInput = page.getByRole('searchbox', { name: 'Pesquisar no MEO' });
+        this.searchButton = page.getByRole('button', { name: 'һ' });
     }
 }
